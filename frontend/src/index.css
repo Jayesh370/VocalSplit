@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #080B14;
+    color: #F0F4FF;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(124, 58, 237, 0.35);
+    color: #F0F4FF;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080B14;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1E2A40;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2E3E58;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-accent-violet hover:bg-accent-violet-bright text-white font-display font-semibold rounded-xl transition-all duration-200 shadow-violet-sm hover:shadow-violet-glow hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet-glow focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-surface-overlay hover:bg-surface-border text-text-primary font-display font-semibold rounded-xl border border-surface-border hover:border-accent-violet transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-text-secondary hover:text-text-primary font-body font-medium rounded-lg transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet;
+  }
+
+  .card {
+    @apply bg-surface-raised border border-surface-border rounded-2xl shadow-card;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:border-accent-violet/30 transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-violet-glow via-accent-cyan to-accent-violet-bright bg-clip-text text-transparent;
+  }
+
+  .section-label {
+    @apply text-xs font-mono font-medium tracking-widest uppercase text-accent-violet-glow;
+  }
+
+  /* Audio player range input */
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  input[type='range']::-webkit-slider-track {
+    background: #1E2A40;
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #7C3AED;
+    margin-top: -5px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  input[type='range']::-webkit-slider-thumb:hover {
+    background: #8B5CF6;
+    transform: scale(1.2);
+  }
+
+  input[type='range']::-moz-range-track {
+    background: #1E2A40;
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #7C3AED;
+    border: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+}
+
+/* Waveform animation bars */
+.waveform-bar {
+  display: inline-block;
+  width: 3px;
+  border-radius: 2px;
+  background: #7C3AED;
+  animation: waveform 1.2s ease-in-out infinite;
+}
+.waveform-bar:nth-child(1) { animation-delay: 0s; height: 16px; }
+.waveform-bar:nth-child(2) { animation-delay: 0.1s; height: 24px; }
+.waveform-bar:nth-child(3) { animation-delay: 0.2s; height: 32px; }
+.waveform-bar:nth-child(4) { animation-delay: 0.3s; height: 24px; }
+.waveform-bar:nth-child(5) { animation-delay: 0.4s; height: 16px; }
+
+@keyframes waveform {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
